@@ -24,17 +24,17 @@ new_version=$(increment_version "$current_version")
 sed -i.bak "s/version = $current_version/version = $new_version/" platformio.ini && rm platformio.ini.bak
 
 # Update version in README.md
-sed -i "s/$current_version/$new_version/" README.md
+sed -i.bak "s/$current_version/$new_version/" README.md && rm README.md.bak
 
 # Update version in src/main.cpp
-sed -i "s/$current_version/$new_version/" src/main.cpp
+sed -i.bak "s/$current_version/$new_version/" src/main.cpp && rm src/main.cpp.bak
 
 # Commit changes
 git add platformio.ini README.md src/main.cpp
-git commit -m "Bump version to $new_version"
+git commit -m "Bump version to v$new_version"
 
 # Create annotated tag
-git tag -a "v$new_version" -m "Version $new_version"
+git tag -a "v$new_version" -m v"Version $new_version"
 
 # Push changes and tag
 git push origin main
