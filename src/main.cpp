@@ -107,6 +107,7 @@ void loop() {
 
     if (M5Cardputer.Keyboard.isKeyPressed(0x28) && !enterPressed) {  // ENTER button
       jiggling = true;
+      currentDelay = random(MIN_DELAY_MS, MAX_DELAY_MS + 1);
       M5Cardputer.Display.fillScreen(BLACK);
       M5Cardputer.Display.setCursor(0, 0);
       M5Cardputer.Display.setTextSize(1.3);
@@ -116,6 +117,10 @@ void loop() {
       M5Cardputer.Display.println("");
       M5Cardputer.Display.println("Min: " + String(MIN_DELAY_MS / 60000) + " min");
       M5Cardputer.Display.println("Max: " + String(MAX_DELAY_MS / 60000) + " min");
+      M5Cardputer.Display.println("");
+      M5Cardputer.Display.print("Next move in: ");
+      M5Cardputer.Display.print(currentDelay / 1000);
+      M5Cardputer.Display.println(" seconds");
       M5Cardputer.Display.println("");
       M5Cardputer.Display.println("Press OK to Stop");
       M5Cardputer.Display.setCursor(M5Cardputer.Display.width() - 95, M5Cardputer.Display.height() - 135);
@@ -143,7 +148,10 @@ void loop() {
       M5Cardputer.Display.setTextSize(1.3);
       M5Cardputer.Display.println("Mouse Jiggler 1.0");
       M5Cardputer.Display.println("");
-      M5Cardputer.Display.println("Mouse moved!");
+      M5Cardputer.Display.println("Jiggling...");
+      M5Cardputer.Display.println("");
+      M5Cardputer.Display.println("Min: " + String(MIN_DELAY_MS / 60000) + " min");
+      M5Cardputer.Display.println("Max: " + String(MAX_DELAY_MS / 60000) + " min");
       M5Cardputer.Display.println("");
       M5Cardputer.Display.println("Next move in: ");
       M5Cardputer.Display.print(currentDelay / 1000);
