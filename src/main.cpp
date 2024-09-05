@@ -135,9 +135,9 @@ void loop() {
     unsigned long currentTime = millis();
 
     if (currentTime - lastMoveTime >= currentDelay) {
-      Mouse.move(2, 0);
-      delay(500);
-      Mouse.move(-2, 0);
+      Mouse.move(40, 0);
+      delay(200);
+      Mouse.move(-40, 0);
       lastMoveTime = currentTime;
 
       currentDelay = random(MIN_DELAY_MS, MAX_DELAY_MS + 1);
