@@ -42,4 +42,4 @@ git push origin "v$new_version"
 
 # Print GitHub release URL
 echo "Create a new release on GitHub:"
-echo "https://github.com/yourusername/your-repo-name/releases/new?tag=v$new_version"
+echo "https://github.com/serginator/cardputer-mouse-jiggler/releases/new?tag=v$new_version"
