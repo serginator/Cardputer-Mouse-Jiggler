@@ -9,7 +9,6 @@
 *******************************************************************************
 */
 
-#include <M5Unified.h>
 #include <M5Cardputer.h>
 #include <USB.h>
 #include <USBHIDMouse.h>
@@ -23,21 +22,19 @@ unsigned long currentDelay = MIN_DELAY_MS;
 bool jiggling = false;
 
 void updateDisplay() {
-  M5.Display.fillScreen(BLACK);
-  M5.Display.setCursor(0, 0);
-  M5.Display.setTextSize(2);
-  M5.Display.println("Mouse Jiggler");
-  M5.Display.println("Min: " + String(MIN_DELAY_MS / 60000) + " min");
-  M5.Display.println("Max: " + String(MAX_DELAY_MS / 60000) + " min");
-  M5.Display.println("Up/Down: Change Min");
-  M5.Display.println("Left/Right: Change Max");
-  M5.Display.println("Press OK to Jiggle");
+  M5Cardputer.Display.fillScreen(BLACK);
+  M5Cardputer.Display.setCursor(0, 0);
+  M5Cardputer.Display.setTextSize(2);
+  M5Cardputer.Display.println("Mouse Jiggler");
+  M5Cardputer.Display.println("Min: " + String(MIN_DELAY_MS / 60000) + " min");
+  M5Cardputer.Display.println("Max: " + String(MAX_DELAY_MS / 60000) + " min");
+  M5Cardputer.Display.println("Up/Down: Change Min");
+  M5Cardputer.Display.println("Left/Right: Change Max");
+  M5Cardputer.Display.println("Press OK to Jiggle");
 }
 
 void setup() {
-  auto cfg = M5.config();
-  M5.begin(cfg);
-
+  M5Cardputer.begin();
   USB.begin();
   Mouse.begin();
 
@@ -48,45 +45,33 @@ void setup() {
 }
 
 void loop() {
-  M5.update();
+  M5Cardputer.update();
 
   if (!jiggling) {
     if (M5Cardputer.Keyboard.isKeyPressed(';')) {  // Up button
-      MIN_DELAY_MS = MIN_DELAY_MS + 60000;
-      if (MIN_DELAY_MS > MAX_DELAY_MS) {
-        MIN_DELAY_MS = MAX_DELAY_MS;
-      }
+      MIN_DELAY_MS = min(MAX_DELAY_MS - 60000, MIN_DELAY_MS + 60000);
       updateDisplay();
     }
     if (M5Cardputer.Keyboard.isKeyPressed('.')) {  // Down button
-      MIN_DELAY_MS = MIN_DELAY_MS - 60000;
-      if (MIN_DELAY_MS < 0) {
-        MIN_DELAY_MS = 0;
-      }
+      MIN_DELAY_MS = max(60000UL, MIN_DELAY_MS - 60000);
       updateDisplay();
     }
     if (M5Cardputer.Keyboard.isKeyPressed(',')) {  // Left button
-      MAX_DELAY_MS = MAX_DELAY_MS - 60000;
-      if (MAX_DELAY_MS < MIN_DELAY_MS) {
-        MAX_DELAY_MS = MIN_DELAY_MS;
-      }
+      MAX_DELAY_MS = max(MIN_DELAY_MS + 60000, MAX_DELAY_MS - 60000);
       updateDisplay();
     }
     if (M5Cardputer.Keyboard.isKeyPressed('/')) {  // Right button
-      MAX_DELAY_MS = MAX_DELAY_MS + 60000;
-      if (MAX_DELAY_MS < MIN_DELAY_MS) {
-        MAX_DELAY_MS = MIN_DELAY_MS + 60000;
-      }
+      MAX_DELAY_MS = min(3600000UL, MAX_DELAY_MS + 60000);
       updateDisplay();
     }
     if (M5Cardputer.Keyboard.isKeyPressed(0x28)) {  // ENTER button
       jiggling = true;
-      M5.Display.fillScreen(BLACK);
-      M5.Display.setCursor(0, 0);
-      M5.Display.println("Jiggling...");
-      M5.Display.println("Min: " + String(MIN_DELAY_MS / 60000) + " min");
-      M5.Display.println("Max: " + String(MAX_DELAY_MS / 60000) + " min");
-      M5.Display.println("Press OK to Stop");
+      M5Cardputer.Display.fillScreen(BLACK);
+      M5Cardputer.Display.setCursor(0, 0);
+      M5Cardputer.Display.println("Jiggling...");
+      M5Cardputer.Display.println("Min: " + String(MIN_DELAY_MS / 60000) + " min");
+      M5Cardputer.Display.println("Max: " + String(MAX_DELAY_MS / 60000) + " min");
+      M5Cardputer.Display.println("Press OK to Stop");
     }
   } else {
     unsigned long currentTime = millis();
@@ -99,12 +84,12 @@ void loop() {
 
       currentDelay = random(MIN_DELAY_MS, MAX_DELAY_MS + 1);
 
-      M5.Display.fillScreen(BLACK);
-      M5.Display.setCursor(0, 0);
-      M5.Display.println("Mouse moved!");
-      M5.Display.print("Next move in: ");
-      M5.Display.print(currentDelay / 1000);
-      M5.Display.println(" seconds");
+      M5Cardputer.Display.fillScreen(BLACK);
+      M5Cardputer.Display.setCursor(0, 0);
+      M5Cardputer.Display.println("Mouse moved!");
+      M5Cardputer.Display.print("Next move in: ");
+      M5Cardputer.Display.print(currentDelay / 1000);
+      M5Cardputer.Display.println(" seconds");
       Serial.println("Mouse moved");
       Serial.print("Next move in: ");
       Serial.print(currentDelay / 1000);
