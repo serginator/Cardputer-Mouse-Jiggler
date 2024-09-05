@@ -168,6 +168,7 @@ void loop() {
     }
     if (M5Cardputer.Keyboard.isKeyPressed(0x28) && !enterPressed) {  // ENTER button to stop
       jiggling = false;
+      jiggleCount = 0;
       updateDisplay();
       enterPressed = true;
     } else if (!M5Cardputer.Keyboard.isKeyPressed(0x28)) {
