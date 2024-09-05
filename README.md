@@ -5,6 +5,11 @@ This program for the M5Stack Cardputer moves the mouse cursor at random interval
 ## Features
 
 - Adjustable minimum and maximum jiggle intervals
+- Start/stop with a button press
+- Display the remaining time until the next move
+- Display the current status (jiggling or not)
+- Display the battery level
+- Show jiggle count
 
 ## Setup
 
