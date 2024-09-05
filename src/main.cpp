@@ -2,9 +2,9 @@
 *******************************************************************************
 * Copyright (c) 2024 by serginator
 *
-* Mouse Jiggler
+* Cardputer Mouse Jiggler
 *
-* Describe: M5Stack.
+* Describe: M5Stack Cardputer Mouse Jiggler
 * Date: 2024/09/04
 *******************************************************************************
 */
@@ -23,7 +23,6 @@ bool jiggling = false;
 
 bool upPressed = false, downPressed = false, leftPressed = false, rightPressed = false, enterPressed = false;
 
-// Add this global variable
 unsigned long jiggleCount = 0;
 
 void updateDisplay() {
