@@ -27,11 +27,13 @@ void updateDisplay() {
   M5Cardputer.Display.fillScreen(BLACK);
   M5Cardputer.Display.setCursor(0, 0);
   M5Cardputer.Display.setTextSize(2);
-  M5Cardputer.Display.println("Mouse Jiggler");
+  M5Cardputer.Display.println("Mouse Jiggler 1.0");
+  M5Cardputer.Display.println("");
   M5Cardputer.Display.println("Min: " + String(MIN_DELAY_MS / 60000) + " min");
   M5Cardputer.Display.println("Max: " + String(MAX_DELAY_MS / 60000) + " min");
+  M5Cardputer.Display.println("");
   M5Cardputer.Display.println("Up/Down: +- Min");
-  M5Cardputer.Display.println("Left/Right: +-Max");
+  M5Cardputer.Display.println("Left/Right: +- Max");
   M5Cardputer.Display.println("Press OK to Jiggle");
 }
 
@@ -43,6 +45,19 @@ void setup() {
   Serial.begin(115200);
   Serial.println("Mouse Jiggler initialized");
 
+  M5Cardputer.Display.setTextSize(1.3);
+  M5Cardputer.Display.setCursor(0, 0);
+  M5Cardputer.Display.println("    sjw       ..----.._    _");
+  M5Cardputer.Display.println("            .' .--.    \"-.(O)_");
+  M5Cardputer.Display.println("-.__.-'\"=:|  ,  _)_ \\__ . c\'-..");
+  M5Cardputer.Display.println("             ''------'---''---'-");
+  M5Cardputer.Display.println("");
+  M5Cardputer.Display.println("");
+  M5Cardputer.Display.println("Cardputer Mouse Jiggler 1.0");
+  M5Cardputer.Display.println("");
+  M5Cardputer.Display.println("by serginator");
+
+  delay(3000);  // Show splash for 3 seconds
   updateDisplay();
 }
 
@@ -86,9 +101,13 @@ void loop() {
       jiggling = true;
       M5Cardputer.Display.fillScreen(BLACK);
       M5Cardputer.Display.setCursor(0, 0);
+      M5Cardputer.Display.println("Mouse Jiggler 1.0");
+      M5Cardputer.Display.println("");
       M5Cardputer.Display.println("Jiggling...");
+      M5Cardputer.Display.println("");
       M5Cardputer.Display.println("Min: " + String(MIN_DELAY_MS / 60000) + " min");
       M5Cardputer.Display.println("Max: " + String(MAX_DELAY_MS / 60000) + " min");
+      M5Cardputer.Display.println("");
       M5Cardputer.Display.println("Press OK to Stop");
       enterPressed = true;
     } else if (!M5Cardputer.Keyboard.isKeyPressed(0x28)) {
@@ -107,14 +126,13 @@ void loop() {
 
       M5Cardputer.Display.fillScreen(BLACK);
       M5Cardputer.Display.setCursor(0, 0);
+      M5Cardputer.Display.println("Mouse Jiggler 1.0");
+      M5Cardputer.Display.println("");
       M5Cardputer.Display.println("Mouse moved!");
-      M5Cardputer.Display.print("Next move in: ");
+      M5Cardputer.Display.println("");
+      M5Cardputer.Display.println("Next move in: ");
       M5Cardputer.Display.print(currentDelay / 1000);
       M5Cardputer.Display.println(" seconds");
-      Serial.println("Mouse moved");
-      Serial.print("Next move in: ");
-      Serial.print(currentDelay / 1000);
-      Serial.println(" seconds");
     }
     if (M5Cardputer.Keyboard.isKeyPressed(0x28) && !enterPressed) {  // ENTER button to stop
       jiggling = false;
