@@ -2,7 +2,7 @@
 *******************************************************************************
 * Copyright (c) 2024 by serginator
 *
-* Cardputer Mouse Jiggler v1.0.0
+* Cardputer Mouse Jiggler v1.0.1
 *
 * Describe: M5Stack Cardputer Mouse Jiggler
 * Date: 2024/09/04
@@ -31,7 +31,7 @@ void updateDisplay() {
   M5Cardputer.Display.fillScreen(BLACK);
   M5Cardputer.Display.setCursor(0, 0);
   M5Cardputer.Display.setTextSize(1.3);
-  M5Cardputer.Display.println("Mouse Jiggler 1.0.0");
+  M5Cardputer.Display.println("Mouse Jiggler 1.0.1");
   M5Cardputer.Display.println("");
   M5Cardputer.Display.println("Min: " + String(MIN_DELAY_MS / 60000) + " min");
   M5Cardputer.Display.println("Max: " + String(MAX_DELAY_MS / 60000) + " min");
@@ -64,7 +64,7 @@ void setup() {
   M5Cardputer.Display.println("             ''------'---''---'-");
   M5Cardputer.Display.println("");
   M5Cardputer.Display.println("");
-  M5Cardputer.Display.println("Cardputer Mouse Jiggler 1.0.0");
+  M5Cardputer.Display.println("Cardputer Mouse Jiggler 1.0.1");
   M5Cardputer.Display.println("");
   M5Cardputer.Display.println("by serginator");
 
@@ -114,7 +114,7 @@ void loop() {
       M5Cardputer.Display.fillScreen(BLACK);
       M5Cardputer.Display.setCursor(0, 0);
       M5Cardputer.Display.setTextSize(1.3);
-      M5Cardputer.Display.println("Mouse Jiggler 1.0.0");
+      M5Cardputer.Display.println("Mouse Jiggler 1.0.1");
       M5Cardputer.Display.println("");
       M5Cardputer.Display.println("Jiggling...");
       M5Cardputer.Display.println("");
@@ -150,7 +150,7 @@ void loop() {
       M5Cardputer.Display.fillScreen(BLACK);
       M5Cardputer.Display.setCursor(0, 0);
       M5Cardputer.Display.setTextSize(1.3);
-      M5Cardputer.Display.println("Mouse Jiggler 1.0.0");
+      M5Cardputer.Display.println("Mouse Jiggler 1.0.1");
       M5Cardputer.Display.println("");
       M5Cardputer.Display.println("Jiggling...");
       M5Cardputer.Display.println("");
