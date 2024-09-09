@@ -1,4 +1,4 @@
-# Cardputer Mouse Jiggler v1.0.1
+# Cardputer Mouse Jiggler v1.0.2
 
 This program for the M5Stack Cardputer moves the mouse cursor at random intervals to prevent the computer from going to sleep. It's perfect for keeping your computer active during long video sessions or presentations.
 
