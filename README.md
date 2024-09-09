@@ -19,11 +19,22 @@ This program for the M5Stack Cardputer moves the mouse cursor at random interval
 3. Open the project in PlatformIO.
 4. Build and upload the code to your M5Stack Cardputer.
 
+## Generate release
+
+Run `sh generate-release.sh` to generate a new version, update version in files and create a new release.
+
+## Generate firmware
+
+Install esptool.py: `pip install esptool`.
+Then run `sh build-firmware.sh` to generate the firmware to be uploaded to M5Burner.
+You will find it in the `generated_firmwares` folder.
+
 ## Usage
 
 - Use Up/Down buttons to adjust the minimum jiggle interval.
 - Use Left/Right buttons to adjust the maximum jiggle interval.
 - Press OK to start/stop jiggling.
+- Press SPACE button to toggle display on/off.
 
 ## Note
 
