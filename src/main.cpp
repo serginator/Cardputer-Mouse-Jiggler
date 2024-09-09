@@ -68,8 +68,17 @@ void setup() {
   M5Cardputer.Display.println("");
   M5Cardputer.Display.println("by serginator");
 
-  delay(3000);  // Show splash for 3 seconds
+  delay(3000);
   updateDisplay();
+}
+
+void performMouseJiggle() {
+  int moveX = random(30, 51);
+  int moveY = random(-5, 6);
+
+  Mouse.move(moveX, moveY);
+  delay(200);
+  Mouse.move(-moveX, -moveY);
 }
 
 void loop() {
@@ -140,9 +149,7 @@ void loop() {
     unsigned long currentTime = millis();
 
     if (currentTime - lastMoveTime >= currentDelay) {
-      Mouse.move(40, 0);
-      delay(200);
-      Mouse.move(-40, 0);
+      performMouseJiggle();
       lastMoveTime = currentTime;
 
       currentDelay = random(MIN_DELAY_MS, MAX_DELAY_MS + 1);
