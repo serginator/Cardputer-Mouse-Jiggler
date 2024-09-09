@@ -94,7 +94,7 @@ void loop() {
     }
 
     if (M5Cardputer.Keyboard.isKeyPressed('.') && !downPressed) {  // Down button
-      MIN_DELAY_MS = max(60000UL, MIN_DELAY_MS - 60000);
+      MIN_DELAY_MS = (MIN_DELAY_MS >= 60000) ? MIN_DELAY_MS - 60000 : 0;
       updateDisplay();
       downPressed = true;
     } else if (!M5Cardputer.Keyboard.isKeyPressed('.')) {
