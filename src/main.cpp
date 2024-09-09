@@ -20,10 +20,12 @@ unsigned long MIN_DELAY_MS = 60000;  // 1 minute
 unsigned long MAX_DELAY_MS = 300000; // 5 minutes
 unsigned long currentDelay = MIN_DELAY_MS;
 bool jiggling = false;
+bool screen = true;
 
-bool upPressed = false, downPressed = false, leftPressed = false, rightPressed = false, enterPressed = false;
+bool upPressed = false, downPressed = false, leftPressed = false, rightPressed = false, enterPressed = false, spacePressed = false;
 
 unsigned long jiggleCount = 0;
+uint8_t brightness = 0;
 
 void updateDisplay() {
   M5Cardputer.Display.fillScreen(BLACK);
@@ -37,6 +39,7 @@ void updateDisplay() {
   M5Cardputer.Display.println("Up/Down: +- Min");
   M5Cardputer.Display.println("Left/Right: +- Max");
   M5Cardputer.Display.println("Press OK to Jiggle");
+  M5Cardputer.Display.println("Press SPACE to toggle display");
   M5Cardputer.Display.setCursor(M5Cardputer.Display.width() - 95, M5Cardputer.Display.height() - 135);
   M5Cardputer.Display.printf("Battery: %d%%", M5Cardputer.Power.getBatteryLevel());
   M5Cardputer.Display.println("");
@@ -51,6 +54,7 @@ void setup() {
 
   Serial.begin(115200);
   Serial.println("Mouse Jiggler initialized");
+  brightness = M5Cardputer.Display.getBrightness();
 
   M5Cardputer.Display.setTextSize(1.3);
   M5Cardputer.Display.setCursor(0, 0);
@@ -122,6 +126,7 @@ void loop() {
       M5Cardputer.Display.println(" seconds");
       M5Cardputer.Display.println("");
       M5Cardputer.Display.println("Press OK to Stop");
+      M5Cardputer.Display.println("Press SPACE to toggle display");
       M5Cardputer.Display.setCursor(M5Cardputer.Display.width() - 95, M5Cardputer.Display.height() - 135);
       M5Cardputer.Display.printf("Battery: %d%%", M5Cardputer.Power.getBatteryLevel());
       M5Cardputer.Display.println("");
@@ -157,6 +162,7 @@ void loop() {
       M5Cardputer.Display.println(" seconds");
       M5Cardputer.Display.println("");
       M5Cardputer.Display.println("Press OK to Stop");
+      M5Cardputer.Display.println("Press SPACE to toggle display");
       jiggleCount++;
 
       M5Cardputer.Display.setCursor(M5Cardputer.Display.width() - 95, M5Cardputer.Display.height() - 135);
@@ -173,5 +179,16 @@ void loop() {
     } else if (!M5Cardputer.Keyboard.isKeyPressed(0x28)) {
       enterPressed = false;
     }
+  }
+  if (M5Cardputer.Keyboard.isKeyPressed(' ') && !spacePressed) {  // SPACE button to toggle display
+    screen = !screen;
+    if (screen) {
+      M5Cardputer.Display.setBrightness(brightness);
+    } else {
+      M5Cardputer.Display.setBrightness(0);
+    }
+    spacePressed = true;
+  } else if (!M5Cardputer.Keyboard.isKeyPressed(' ')) {
+    spacePressed = false;
   }
 }

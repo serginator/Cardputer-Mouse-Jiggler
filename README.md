@@ -10,6 +10,7 @@ This program for the M5Stack Cardputer moves the mouse cursor at random interval
 - Display the current status (jiggling or not)
 - Display the battery level
 - Show jiggle count
+- Toggle display with a button press (feat by [@jholubinka](https://github.com/jholubinka), thanks!)
 
 ## Setup
 
