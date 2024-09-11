@@ -2,10 +2,8 @@
 
 BUILD_PATH=.pio/build/m5stack-stamps3
 
-# Get current version from platformio.ini
-current_version=$(grep 'version =' platformio.ini | sed 's/version = //')
+current_version=$(head -n 1 version)
 
-# Create generated_firmwares folder if it doesn't exist
 mkdir -p generated_firmwares
 
 # Build the firmware
